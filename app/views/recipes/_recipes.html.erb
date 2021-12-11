@@ -2,12 +2,12 @@
     <div class="row row-cols-1 row-cols-md-3 g-4">
       <% recipes.each do |recipe| %>
       <div class="col">
-        <div class="card h-100">
-          <div class="card-body">
+        <div class="card h-100 border-dark">
+          <a href="/recipes/<%= recipe.id %>" class="card-body text-dark text-decoration-none">
             <h5 class="card-title"><%= recipe.title %></h5>
-            <div class="card-img-top"><%= image_tag('sample1.jpeg') %></div>
+            <div class="card-img-top"><%= image_tag recipe.image.url if recipe.image? %></div>
             <p class="card-text"><%= recipe.explanation %></p>
-          </div>
+          </a>
           <div class="card-footer">
             <small class="text-muted">by&nbsp;<%= recipe.user.name %>&nbsp;created_at&nbsp;:&nbsp;<%= l recipe.created_at %></small>
           </div>

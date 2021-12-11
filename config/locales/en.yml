@@ -34,3 +34,7 @@ en:
   time:
     formats:
       default: "%Y/%m/%d"
+  helpers:
+    submit:
+      create: "レシピを作成する"
+      update: "レシピを更新する"

@@ -1,0 +1,17 @@
+<%= form_with model: @recipe, local: true do |form| %>
+
+<p><%= form.label :title %><br>
+<%= form.text_field :title %>
+</p>
+
+<p><%= form.label :explanation %><br>
+<%= form.text_area :explanation %>
+</p>
+
+<p><%= form.label :image %><br>
+<%= form.file_field :image %>
+</p>
+
+<p><%= form.submit %></p>
+
+<% end %>
