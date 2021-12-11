@@ -1,0 +1,20 @@
+<% if recipes.any? %>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <% recipes.each do |recipe| %>
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title"><%= recipe.title %></h5>
+            <div class="card-img-top"><%= image_tag('sample1.jpeg') %></div>
+            <p class="card-text"><%= recipe.explanation %></p>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">by&nbsp;<%= recipe.user.name %>&nbsp;created_at&nbsp;:&nbsp;<%= l recipe.created_at %></small>
+          </div>
+        </div>
+      </div>
+      
+      <% end %>
+    </div>
+  <%== pagy_bootstrap_nav(@pagy) %>
+<% end %>
