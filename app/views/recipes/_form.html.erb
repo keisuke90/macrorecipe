@@ -1,17 +1,28 @@
-<%= form_with model: @recipe, local: true do |form| %>
+<%= form_with model: recipe, local: true do |rf| %>
 
-<p><%= form.label :title %><br>
-<%= form.text_field :title %>
+<p><%= rf.label :'タイトル' %><br>
+<%= rf.text_field :title %>
 </p>
 
-<p><%= form.label :explanation %><br>
-<%= form.text_area :explanation %>
+<p><%= rf.label :'レシピの説明' %><br>
+<%= rf.text_area :explanation %>
 </p>
 
-<p><%= form.label :image %><br>
-<%= form.file_field :image %>
+<p><%= rf.label :image %><br>
+<%= rf.file_field :image %>
 </p>
 
-<p><%= form.submit %></p>
+<%= rf.fields_for :steps do |sf| %>
+
+<%= sf.label :"手順#{sf.index + 1}" %>
+<%= sf.hidden_field :num, :value => sf.index + 1 %>
+
+<p>
+<%= sf.text_area :explanation %>
+</p>
+
+<% end %>
+
+<p><%= rf.submit %></p>
 
 <% end %>

@@ -4,28 +4,36 @@ class RecipesController < ApplicationController
   
   def show
     @recipe = Recipe.find(params[:id])
+    @steps = @recipe.steps.all
   end
 
   def new
     @recipe = Recipe.new
+    6.times{ @recipe.steps.build }
   end
 
   def create
     @recipe = current_user.recipes.build(recipe_params)
+    
     if @recipe.save
-      flash[:success] = 'レシピを投稿しました。'
+      flash[:success] = 'レシピを登録しました。'
       redirect_to root_url
     else
-      flash.now[:danger] = 'レシピの投稿に失敗しました。'
-      render 'recipes/new'
+      flash.now[:danger] = 'レシピの登録に失敗しました。'
+      render :new
     end
   end
   
   def edit
+    (1..6).each do
+      if @recipe.steps.size < 6
+        @recipe.steps.build
+      end
+    end
   end
 
   def update
-    if @recipe.update(recipe_params)
+    if @recipe.update(update_recipe_params)
       flash[:success] = 'レシピが正常に更新されました'
       redirect_to @recipe
     else
@@ -43,7 +51,11 @@ class RecipesController < ApplicationController
   private
   
   def recipe_params
-    params.require(:recipe).permit(:title, :explanation, :image)
+    params.require(:recipe).permit(:title, :explanation, :image, steps_attributes: [:num, :explanation])
+  end
+  
+  def update_recipe_params
+    params.require(:recipe).permit(:title, :explanation, :image, steps_attributes: [:num, :explanation, :_destroy, :id])
   end
   
   def correct_user

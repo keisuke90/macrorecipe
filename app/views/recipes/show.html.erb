@@ -1,6 +1,15 @@
 <h1><%= @recipe.title %></h1>
 <p><%= @recipe.explanation %></p>
 <p><%= image_tag @recipe.image.url if @recipe.image? %></p>
+<p>
+<% @steps.each do |step| %>
+    <%= "手順#{step.num}" %>
+    <%= step.explanation %>
+    <br>
+<% end %>
+
+</p>
+
 <% if current_user == @recipe.user %>
     <%= link_to "編集", edit_recipe_path(@recipe), class: 'btn btn-success btn-sm' %>
     <%= link_to "削除", @recipe, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
