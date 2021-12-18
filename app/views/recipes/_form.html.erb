@@ -1,28 +1,38 @@
-<%= form_with model: recipe, local: true do |rf| %>
+<%= form_with model: recipe, local: true do |recipe_form| %>
 
-<p><%= rf.label :'タイトル' %><br>
-<%= rf.text_field :title %>
-</p>
+  <p><%= recipe_form.label :'タイトル' %><br>
+  <%= recipe_form.text_field :title %>
+  </p>
+  
+  <p><%= recipe_form.label :'レシピの説明' %><br>
+  <%= recipe_form.text_area :explanation %>
+  </p>
+  
+  <p><%= recipe_form.label :image %><br>
+  <%= recipe_form.file_field :image %>
+  </p>
 
-<p><%= rf.label :'レシピの説明' %><br>
-<%= rf.text_area :explanation %>
-</p>
+<%= recipe_form.fields_for :steps do |step_form| %>
 
-<p><%= rf.label :image %><br>
-<%= rf.file_field :image %>
-</p>
-
-<%= rf.fields_for :steps do |sf| %>
-
-<%= sf.label :"手順#{sf.index + 1}" %>
-<%= sf.hidden_field :num, :value => sf.index + 1 %>
-
-<p>
-<%= sf.text_area :explanation %>
-</p>
+  <%= step_form.label :"手順#{step_form.index + 1}" %>
+  <%= step_form.hidden_field :num, :value => step_form.index + 1 %>
+  
+  <p>
+  <%= step_form.text_area :explanation %>
+  </p>
 
 <% end %>
 
-<p><%= rf.submit %></p>
+<%= recipe_form.fields_for :ingredients do |ingredients_form| %>
+
+  <%= "材料#{ingredients_form.index + 1}" %>
+　<%= ingredients_form.collection_select :food_id, Food.all, :id, :name, include_blank: "選択して下さい" %>
+  <p>
+  <%= ingredients_form.number_field :quantity %> g
+  </p>
+
+<% end %>
+
+<p><%= recipe_form.submit %></p>
 
 <% end %>

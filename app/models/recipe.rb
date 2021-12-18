@@ -7,5 +7,7 @@ class Recipe < ApplicationRecord
   mount_uploader :image, RacipeImageUploader
   
   has_many :steps, dependent: :destroy
+  has_many :ingredients, dependent: :destroy
   accepts_nested_attributes_for :steps, reject_if: lambda {|attributes| attributes['explanation'].blank?}, allow_destroy: true
+  accepts_nested_attributes_for :ingredients, reject_if: lambda {|attributes| attributes['quantity'].blank?}, allow_destroy: true
 end

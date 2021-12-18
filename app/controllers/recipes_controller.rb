@@ -5,11 +5,14 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @steps = @recipe.steps.all
+    @ingredients = @recipe.ingredients.all
   end
 
   def new
     @recipe = Recipe.new
+    @foods = Food.all
     6.times{ @recipe.steps.build }
+    10.times{ @recipe.ingredients.build }
   end
 
   def create
@@ -28,6 +31,11 @@ class RecipesController < ApplicationController
     (1..6).each do
       if @recipe.steps.size < 6
         @recipe.steps.build
+      end
+    end
+    (1..10).each do
+      if @recipe.ingredients.size < 10
+        @recipe.ingredients.build
       end
     end
   end
@@ -51,11 +59,11 @@ class RecipesController < ApplicationController
   private
   
   def recipe_params
-    params.require(:recipe).permit(:title, :explanation, :image, steps_attributes: [:num, :explanation])
+    params.require(:recipe).permit(:title, :explanation, :image, steps_attributes: [:num, :explanation], ingredients_attributes: [:food_id, :quantity])
   end
   
   def update_recipe_params
-    params.require(:recipe).permit(:title, :explanation, :image, steps_attributes: [:num, :explanation, :_destroy, :id])
+    params.require(:recipe).permit(:title, :explanation, :image, steps_attributes: [:num, :explanation, :_destroy, :id], ingredients_attributes: [:food_id, :quantity, :_destroy, :id])
   end
   
   def correct_user
