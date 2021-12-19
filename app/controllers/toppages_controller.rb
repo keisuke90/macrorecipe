@@ -1,9 +1,9 @@
 class ToppagesController < ApplicationController
   def index
     @pagy, @recipes = pagy(Recipe.all.order(id: :desc))
-    @protein = 1
-    @fat = 2
-    @carbo = 3
+    @protein = 20
+    @fat = 10
+    @carbo = 40
     
   end
   
