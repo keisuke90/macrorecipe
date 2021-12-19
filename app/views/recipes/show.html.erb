@@ -15,6 +15,22 @@
     <%= "#{ingredient.quantity} g" %>
     <br>
 <% end %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">たんぱく質</th>
+      <th scope="col">脂質</th>
+      <th scope="col">炭水化物</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= "#{@recipe.foods.sum(:protein)} g" %></td>
+      <td><%= "#{@recipe.foods.sum(:fat)} g" %></td>
+      <td><%= "#{@recipe.foods.sum(:carbo)} g" %></td>
+    </tr>
+  </tbody>
+</table>
 
 
 <% if current_user == @recipe.user %>

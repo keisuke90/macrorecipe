@@ -16,9 +16,9 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><%= "#{@protein} g" %></td>
-                  <td><%= "#{@fat} g" %></td>
-                  <td><%= "#{@carbo} g" %></td>
+                  <td><%= "#{recipe.foods.sum(:protein)} g" %></td>
+                  <td><%= "#{recipe.foods.sum(:fat)} g" %></td>
+                  <td><%= "#{recipe.foods.sum(:carbo)} g" %></td>
                 </tr>
               </tbody>
             </table>
