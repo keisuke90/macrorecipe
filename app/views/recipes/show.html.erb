@@ -1,3 +1,4 @@
+<%= render 'favorites/favorite_button', recipe: @recipe %>
 <h1><%= @recipe.title %></h1>
 <p><%= @recipe.explanation %></p>
 <p><%= image_tag @recipe.image.url if @recipe.image? %></p>
@@ -31,7 +32,6 @@
     </tr>
   </tbody>
 </table>
-
 
 <% if current_user == @recipe.user %>
     <%= link_to "編集", edit_recipe_path(@recipe), class: 'btn btn-success btn-sm' %>

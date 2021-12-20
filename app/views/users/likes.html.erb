@@ -1,0 +1,10 @@
+<div class="row">
+  <h3 class="card-title"><%= @user.name %></h3>
+  <div class="col-sm-12">
+    <ul class="nav nav-tabs nav-justified mb-3">
+      <li class="nav-item"><a href="<%= likes_user_path(@user) %>" class="nav-link active">お気に入り</a></li>
+      <li class="nav-item"><a href="<%= user_path(@user) %>" class="nav-link">投稿レシピ一覧</a></li>
+    </ul>
+    <%= render 'recipes/recipes', recipes: @recipes %>
+  </div>
+</div>

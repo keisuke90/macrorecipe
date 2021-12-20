@@ -23,6 +23,11 @@ class UsersController < ApplicationController
       render :new
     end
   end
+  
+  def likes
+    @user = User.find(params[:id])
+    @pagy, @recipes = pagy(@user.likes)
+  end
 
   private
 

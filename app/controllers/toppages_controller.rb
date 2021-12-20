@@ -1,13 +1,20 @@
 class ToppagesController < ApplicationController
-  def index
-    @pagy, @recipes = pagy(Recipe.all.order(id: :desc))
-  end
+  # def index
+  #   @pagy, @recipes = pagy(Recipe.all.order(id: :desc), items: 9)
+    # food_ids = []
+    # @recipes.each do |recipe|
+    #   recipe.ingredients.each do |ingredient|
+    #     food_ids << ingredient.food_id
+    #   end
+    # end
+    # foods = Food.where(id: food_ids.uniq)
+  # end
   
-  def search
+  def index
     if params[:title].present?
-      @pagy, @recipes = pagy(Recipe.where('title LIKE ?', "%#{params[:title]}%"))
+      @pagy, @recipes = pagy(Recipe.where('title LIKE ?', "%#{params[:title]}%"), items: 9)
     else
-      @recipes = Recipe.none
+      @pagy, @recipes = pagy(Recipe.all.order(id: :desc), items: 9)
     end
   end
 end
