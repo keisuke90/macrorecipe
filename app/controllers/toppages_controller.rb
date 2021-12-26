@@ -1,14 +1,12 @@
 class ToppagesController < ApplicationController
-  # def index
-  #   @pagy, @recipes = pagy(Recipe.all.order(id: :desc), items: 9)
-    # food_ids = []
-    # @recipes.each do |recipe|
-    #   recipe.ingredients.each do |ingredient|
-    #     food_ids << ingredient.food_id
-    #   end
-    # end
-    # foods = Food.where(id: food_ids.uniq)
+
+  # food_ids = []
+  # @recipes.each do |recipe|
+  #   recipe.ingredients.each do |ingredient|
+  #     food_ids << ingredient.food_id
+  #   end
   # end
+  # foods = Food.where(id: food_ids.uniq)
   
   def index
     if params[:title].present?
