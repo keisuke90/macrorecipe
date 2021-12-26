@@ -1,39 +1,72 @@
-<%= render 'favorites/favorite_button', recipe: @recipe %>
-<h1><%= @recipe.title %></h1>
-<p><%= @recipe.explanation %></p>
-<p><%= image_tag @recipe.image.url if @recipe.image? %></p>
+<div class="d-flex align-items-center">
+  <h1 class="pe-2"><%= @recipe.title %></h1>
+  <% if current_user %>
+    <%= render 'favorites/favorite_button', recipe: @recipe %>
+  <% end %>
+  <% if current_user == @recipe.user %>
+      <%= link_to "編集", edit_recipe_path(@recipe), class: 'btn btn-success btn-sm' %>
+      <%= link_to "削除", @recipe, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+  <% end %>
+</div>
+<div class="row pb-3">
+  <div class="col-4">
+    <% if @recipe.image.url %>
+      <%= image_tag @recipe.image.url, class: 'img-fluid' %>
+    <% else %>
+      <%= image_tag 'no_image_square.jpeg', class: 'img-fluid' %>
+    <% end %>
+  </div>
+  <div class="col-4">
+    <p>この料理に含まれる栄養素</p>
+    <table class="table text-center">
+      <thead>
+        <tr>
+          <th scope="col">たんぱく質</th>
+          <th scope="col">脂質</th>
+          <th scope="col">炭水化物</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= "#{@recipe.foods.sum(:protein)} g" %></td>
+          <td><%= "#{@recipe.foods.sum(:fat)} g" %></td>
+          <td><%= "#{@recipe.foods.sum(:carbo)} g" %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card h-75 col-3">
+    <div class="card-body">
+      <%= @recipe.explanation %>
+    </div>
+  </div>
+</div>
 
-<h5>手順</h5>
-<% @steps.each do |step| %>
-    <%= "手順#{step.num}" %>
-    <%= step.explanation %>
-    <br>
-<% end %>
-<br>
-<h5>材料</h5>
-<% @ingredients.each do |ingredient| %>
-    <%= ingredient.food.name %>
-    <%= "#{ingredient.quantity} g" %>
-    <br>
-<% end %>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">たんぱく質</th>
-      <th scope="col">脂質</th>
-      <th scope="col">炭水化物</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><%= "#{@recipe.foods.sum(:protein)} g" %></td>
-      <td><%= "#{@recipe.foods.sum(:fat)} g" %></td>
-      <td><%= "#{@recipe.foods.sum(:carbo)} g" %></td>
-    </tr>
-  </tbody>
-</table>
 
-<% if current_user == @recipe.user %>
-    <%= link_to "編集", edit_recipe_path(@recipe), class: 'btn btn-success btn-sm' %>
-    <%= link_to "削除", @recipe, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
-<% end %>
+<div class="row pb-3">
+  <div class="col-3">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-dark" aria-current="true">材料</li>
+      <% @ingredients.each do |ingredient| %>
+        <li class="list-group-item">
+          <%= ingredient.food.name + " #{ingredient.quantity}g" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  
+  <div class="col-9">
+    <div class="row">
+      <% @steps.each do |step| %>
+        <div class="card border-secondary col-4" style="max-width: 18rem;">
+          <div class="card-header"><%= "手順#{step.num}" %></div>
+          <div class="card-body">
+            <p class="card-text"><%= step.explanation %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  
+</div>
+

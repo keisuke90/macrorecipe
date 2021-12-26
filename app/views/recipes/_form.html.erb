@@ -1,38 +1,42 @@
-<%= form_with model: recipe, local: true do |recipe_form| %>
-
-  <p><%= recipe_form.label :'タイトル' %><br>
-  <%= recipe_form.text_field :title %>
-  </p>
+<div class="row">
+  <%= form_with model: recipe, local: true do |recipe_form| %>
   
-  <p><%= recipe_form.label :'レシピの説明' %><br>
-  <%= recipe_form.text_area :explanation %>
-  </p>
+    <%= recipe_form.label :'タイトル', class: "col-form-label col-sm-3" %>
+    <div class="col-sm-9">
+      <%= recipe_form.text_field :title, class: "form-control" %>
+    </div>
+    
+    
+    <p><%= recipe_form.label :'レシピの説明' %><br>
+    <%= recipe_form.text_area :explanation %>
+    </p>
+    
+    <p><%= recipe_form.label :image %><br>
+    <%= recipe_form.file_field :image %>
+    </p>
   
-  <p><%= recipe_form.label :image %><br>
-  <%= recipe_form.file_field :image %>
-  </p>
-
-<%= recipe_form.fields_for :steps do |step_form| %>
-
-  <%= step_form.label :"手順#{step_form.index + 1}" %>
-  <%= step_form.hidden_field :num, :value => step_form.index + 1 %>
+  <%= recipe_form.fields_for :steps do |step_form| %>
   
-  <p>
-  <%= step_form.text_area :explanation %>
-  </p>
-
-<% end %>
-
-<%= recipe_form.fields_for :ingredients do |ingredients_form| %>
-
-  <%= "材料#{ingredients_form.index + 1}" %>
-　<%= ingredients_form.collection_select :food_id, Food.all, :id, :name, include_blank: "選択して下さい" %>
-  <p>
-  <%= ingredients_form.number_field :quantity %> g
-  </p>
-
-<% end %>
-
-<p><%= recipe_form.submit %></p>
-
-<% end %>
+    <%= step_form.label :"手順#{step_form.index + 1}" %>
+    <%= step_form.hidden_field :num, :value => step_form.index + 1 %>
+    
+    <p>
+    <%= step_form.text_area :explanation %>
+    </p>
+  
+  <% end %>
+  
+  <%= recipe_form.fields_for :ingredients do |ingredients_form| %>
+  
+    <%= "材料#{ingredients_form.index + 1}" %>
+  　<%= ingredients_form.collection_select :food_id, Food.all, :id, :name, include_blank: "選択して下さい" %>
+    <p>
+    <%= ingredients_form.number_field :quantity %> g
+    </p>
+  
+  <% end %>
+  
+  <p><%= recipe_form.submit %></p>
+  
+  <% end %>
+</div>

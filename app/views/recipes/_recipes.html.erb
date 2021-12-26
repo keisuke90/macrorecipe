@@ -2,10 +2,16 @@
     <div class="row row-cols-1 row-cols-md-3 g-4 mb-3">
       <% recipes.each do |recipe| %>
       <div class="col">
-        <div class="card h-100 border-dark">
+        <div class="card h-100 border-dark text-center">
           <a href="/recipes/<%= recipe.id %>" class="card-body text-dark text-decoration-none">
             <h5 class="card-title"><%= recipe.title %></h5>
-            <div class="card-img-top"><%= image_tag recipe.image.url if recipe.image? %></div>
+            <div class="card-img-top">
+              <% if recipe.image.url %>
+                <%= image_tag recipe.image.url, class: 'recipe-image'  %>
+              <% else %>
+                <%= image_tag 'no_image_square.jpeg', class: 'recipe-image' %>
+              <% end %>
+            </div>
             <table class="table">
               <thead>
                 <tr>

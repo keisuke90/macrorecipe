@@ -1,10 +1,14 @@
 <div class="bg-secondary p-3 p-sm-5 my-4 rounded">
   <div class="text-center text-white">
     <h1>Welcome to the MacroRecipe</h1>
-    <%= form_with url: root_path, method: :get, local: true do |f| %>
-      <%= f.text_field :title, value: params[:title] %>
-      <%= f.submit :search %>
-    <% end %>
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+          <%= form_with url: root_path, method: :get, local: true,  class: :"input-group" do |f| %>
+            <%= f.text_field :title, value: params[:title], class: "form-control", placeholder: "レシピ名で検索" %>
+            <%= f.submit :'検索', class: "btn btn-success" %>
+          <% end %>
+      </div>
+    </div>
   </div>
   
 </div>
