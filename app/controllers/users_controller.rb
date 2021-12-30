@@ -4,7 +4,12 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @pagy, @recipes = pagy(@user.recipes.order(id: :desc))
+    
+    if @user.id == session[:user_id]
+      @pagy, @recipes = pagy(@user.recipes.order(id: :desc))
+    else
+      redirect_to root_path
+    end
   end
 
   def new
