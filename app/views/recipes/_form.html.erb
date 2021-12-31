@@ -1,5 +1,6 @@
 <div class="row">
   <%= form_with model: recipe, local: true do |recipe_form| %>
+    <%= render 'layouts/error_messages', model: recipe_form.object %>
   
     <%= recipe_form.label :'タイトル', class: "col-form-label col-sm-3" %>
     <div class="col-sm-9">
