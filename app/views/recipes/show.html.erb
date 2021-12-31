@@ -11,9 +11,9 @@
 <div class="row pb-3">
   <div class="col-4">
     <% if @recipe.image.url %>
-      <%= image_tag @recipe.image.url, class: 'img-fluid' %>
+      <%= image_tag @recipe.image.url, class: 'img-fluid', alt: "レシピ写真" %>
     <% else %>
-      <%= image_tag 'no_image_square.jpeg', class: 'img-fluid' %>
+      <%= image_tag 'no_image_square.jpeg', class: 'img-fluid', alt: "レシピ写真" %>
     <% end %>
   </div>
   <div class="col-4">

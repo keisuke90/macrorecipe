@@ -7,9 +7,9 @@
             <h5 class="card-title"><%= recipe.title %></h5>
             <div class="card-img-top">
               <% if recipe.image.url %>
-                <%= image_tag recipe.image.url, class: 'recipe-image'  %>
+                <%= image_tag recipe.image.url, class: 'recipe-image', alt: "レシピ写真"  %>
               <% else %>
-                <%= image_tag 'no_image_square.jpeg', class: 'recipe-image' %>
+                <%= image_tag 'no_image_square.jpeg', class: 'recipe-image', alt: "レシピ写真" %>
               <% end %>
             </div>
             <table class="table">
