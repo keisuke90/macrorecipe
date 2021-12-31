@@ -20,7 +20,7 @@ class RecipesController < ApplicationController
     
     if @recipe.save
       flash[:success] = 'レシピを登録しました。'
-      redirect_to root_url
+      redirect_to @recipe
     else
       flash.now[:danger] = 'レシピの登録に失敗しました。'
       render :new
