@@ -1,43 +1,53 @@
-<div class="row">
-  <%= form_with model: recipe, local: true do |recipe_form| %>
-    <%= render 'layouts/error_messages', model: recipe_form.object %>
+<%= form_with model: recipe, local: true do |recipe_form| %>
+  <%= render 'layouts/error_messages', model: recipe_form.object %>
   
-    <%= recipe_form.label :'title', class: "col-form-label col-sm-3" %>
-    <div class="col-sm-9">
-      <%= recipe_form.text_field :title, class: "form-control" %>
+  <div class="row mb-3">
+    <%= recipe_form.label :'title', class: "col-form-label col-sm-1" %>
+    <div class="col-sm-6">
+      <%= recipe_form.text_field :title, :placeholder => "レシピのタイトルを入力", class: "form-control" %>
     </div>
-    
-    
-    <p><%= recipe_form.label :'explanation' %><br>
-    <%= recipe_form.text_area :explanation %>
-    </p>
-    
-    <p><%= recipe_form.label :image %><br>
-    <%= recipe_form.file_field :image %>
-    </p>
+  </div>
   
-    <%= recipe_form.fields_for :steps do |step_form| %>
+  <div class="row mb-3">
+    <%= recipe_form.label :'explanation', class: "col-form-label col-sm-1" %>
+    <div class="col-sm-6"><%= recipe_form.text_area :explanation, :placeholder => "レシピの説明を入力", class: "form-control" %></div>
+  </div>
+  
+  <div class="row mb-3">
+    <%= recipe_form.label :image, class: "col-form-label col-sm-1" %>
+    <div class="col-sm-6"><%= recipe_form.file_field :image, class: "form-control" %></div>
+  </div>
+
+  <%= recipe_form.fields_for :steps do |step_form| %>
     
-      <%= "手順#{step_form.index + 1}" %>
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-1"><%= "手順#{step_form.index + 1}" %></label>
+      
       <%= step_form.hidden_field :num, :value => step_form.index + 1 %>
       
-      <p>
-      <%= step_form.text_area :explanation %>
-      </p>
-    
-    <% end %>
-  
-    <%= recipe_form.fields_for :ingredients do |ingredients_form| %>
-    
-      <%= "材料#{ingredients_form.index + 1}" %>
-    　<%= ingredients_form.collection_select :food_id, Food.all, :id, :name, include_blank: "選択して下さい" %>
-      <p>
-      <%= ingredients_form.number_field :quantity %> g
-      </p>
-    
-    <% end %>
-  
-    <p><%= recipe_form.submit %></p>
+      <div class="col-sm-6"><%= step_form.text_area :explanation, :placeholder => "手順を入力", class: "form-control" %></div>
+      
+    </div>
   
   <% end %>
-</div>
+
+  <%= recipe_form.fields_for :ingredients do |ingredients_form| %>
+    
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-1"><%= "材料#{ingredients_form.index + 1}" %></label>
+      <div class="col-sm-2 d-flex align-items-center"><%= ingredients_form.collection_select :food_id, Food.all, :id, :name, include_blank: "選択して下さい" %></div>
+        <div class="offset-md-1 col-sm-1 d-flex align-items-center"><%= ingredients_form.number_field :quantity, class: "form-control" %></div>
+        <div class="col-sm-1  d-flex align-items-center">g</div>
+      <div class="row">
+      </div>
+    </div>
+    
+  <% end %>
+  
+  <div class="row mb-3">
+    <div class="offset-md-1 col-sm-6">
+      <%= recipe_form.submit class: "btn btn-success w-100" %>
+    </div>
+  </div>
+
+<% end %>
