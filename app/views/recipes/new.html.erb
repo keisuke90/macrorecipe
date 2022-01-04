@@ -1,1 +1,5 @@
 <%= render 'form', recipe: @recipe %>
+
+<% if @recipe.errors.any? %>
+  <%= javascript_pack_tag 'recipes/recipes_render' %>
+<% end %>

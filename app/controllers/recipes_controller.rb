@@ -14,7 +14,7 @@ class RecipesController < ApplicationController
     6.times{ @recipe.steps.build }
     10.times{ @recipe.ingredients.build }
   end
-
+  
   def create
     @recipe = current_user.recipes.build(recipe_params)
     
@@ -23,6 +23,16 @@ class RecipesController < ApplicationController
       redirect_to @recipe
     else
       flash.now[:danger] = 'レシピの登録に失敗しました。'
+      (1..6).each do
+        if @recipe.steps.size < 6
+          @recipe.steps.build
+        end
+      end
+      (1..10).each do
+        if @recipe.ingredients.size < 10
+          @recipe.ingredients.build
+        end
+      end
       render :new
     end
   end
@@ -46,6 +56,16 @@ class RecipesController < ApplicationController
       redirect_to @recipe
     else
       flash.now[:danger] = 'レシピが更新されませんでした'
+      (1..6).each do
+        if @recipe.steps.size < 6
+          @recipe.steps.build
+        end
+      end
+      (1..10).each do
+        if @recipe.ingredients.size < 10
+          @recipe.ingredients.build
+        end
+      end
       render :edit
     end
   end

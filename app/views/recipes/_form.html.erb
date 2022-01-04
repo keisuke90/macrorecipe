@@ -35,7 +35,7 @@
     
     <div class="row mb-3">
       <label class="col-form-label col-sm-1"><%= "材料#{ingredients_form.index + 1}" %></label>
-      <div class="col-sm-2 d-flex align-items-center"><%= ingredients_form.collection_select :food_id, Food.all, :id, :name, include_blank: "選択して下さい" %></div>
+      <div class="col-sm-2 d-flex align-items-center"><%= ingredients_form.collection_select :food_id, Food.all, :id, :name, include_blank: "選択して下さい", class: "form-control chosen-select" %></div>
         <div class="offset-md-1 col-sm-1 d-flex align-items-center"><%= ingredients_form.number_field :quantity, class: "form-control" %></div>
         <div class="col-sm-1  d-flex align-items-center">g</div>
       <div class="row">

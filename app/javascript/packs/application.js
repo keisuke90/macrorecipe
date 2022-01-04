@@ -11,3 +11,5 @@ Rails.start()
 Turbolinks.start()
 
 require("jquery")
+
+require('test.js')

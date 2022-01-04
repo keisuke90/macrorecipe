@@ -1,3 +1,5 @@
+require chosen
+
 .like-btn {
  width: 25px;
  height: 30px;
