@@ -14,10 +14,32 @@
   </div>
   
   <div class="row mb-3">
-    <%= recipe_form.label :image, class: "col-form-label col-sm-1" %>
-    <div class="col-sm-6"><%= recipe_form.file_field :image, class: "form-control" %></div>
+    <%= recipe_form.label :'img', class: "col-form-label col-sm-1" %>
+    <div class="col-sm-6"><%= recipe_form.file_field :image, id: :recipe_img, class: "form-control" %></div>
+  </div>
+  <div class="row pb-3">
+    <div class="col-4 offset-1">
+      <% if @recipe.image.present? %>
+        <%= image_tag @recipe.image.url, id: :img_prev, class: 'img-fluid', alt: "レシピ写真" %>
+      <% else %>
+        <%= image_tag "no_image_square.jpeg", id: :img_prev, class: 'img-fluid', alt: "レシピ写真" %>
+      <% end %>
+    </div>
   </div>
 
+  <%= recipe_form.fields_for :ingredients do |ingredients_form| %>
+    
+    <div class="row mb-3">
+      <label class="col-form-label col-sm-1"><%= "材料#{ingredients_form.index + 1}" %></label>
+      <div class="col-sm-2 d-flex align-items-center"><%= ingredients_form.collection_select :food_id, Food.all, :id, :name, include_blank: "選択して下さい", class: "form-control" %></div>
+        <div class="offset-md-1 col-sm-2 d-flex align-items-center"><%= ingredients_form.number_field :quantity, :placeholder => "一人分の分量", class: "form-control" %></div>
+        <div class="col-sm-1  d-flex align-items-center">g</div>
+      <div class="row">
+      </div>
+    </div>
+    
+  <% end %>
+  
   <%= recipe_form.fields_for :steps do |step_form| %>
     
     <div class="row mb-3">
@@ -31,19 +53,6 @@
   
   <% end %>
 
-  <%= recipe_form.fields_for :ingredients do |ingredients_form| %>
-    
-    <div class="row mb-3">
-      <label class="col-form-label col-sm-1"><%= "材料#{ingredients_form.index + 1}" %></label>
-      <div class="col-sm-2 d-flex align-items-center"><%= ingredients_form.collection_select :food_id, Food.all, :id, :name, include_blank: "選択して下さい", class: "form-control chosen-select" %></div>
-        <div class="offset-md-1 col-sm-1 d-flex align-items-center"><%= ingredients_form.number_field :quantity, class: "form-control" %></div>
-        <div class="col-sm-1  d-flex align-items-center">g</div>
-      <div class="row">
-      </div>
-    </div>
-    
-  <% end %>
-  
   <div class="row mb-3">
     <div class="offset-md-1 col-sm-6">
       <%= recipe_form.submit class: "btn btn-success w-100" %>
@@ -51,3 +60,20 @@
   </div>
 
 <% end %>
+
+<script type="text/javascript">
+  $(function() {
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+    $('#img_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#recipe_img").change(function(){
+        readURL(this);
+    });
+  });
+</script>

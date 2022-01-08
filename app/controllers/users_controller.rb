@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     
     if @user.id == session[:user_id]
-      @pagy, @recipes = pagy(@user.recipes.order(id: :desc))
+      @pagy, @recipes = pagy(@user.recipes.order(id: :desc), items: 9)
     else
       redirect_to root_path
     end
@@ -31,7 +31,12 @@ class UsersController < ApplicationController
   
   def likes
     @user = User.find(params[:id])
-    @pagy, @recipes = pagy(@user.likes)
+    
+    if @user.id == session[:user_id]
+      @pagy, @recipes = pagy(@user.likes.order(id: :desc), items: 9)
+    else
+      redirect_to root_path
+    end
   end
 
   private

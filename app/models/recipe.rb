@@ -36,4 +36,12 @@ class Recipe < ApplicationRecord
     end
     value
   end
+  
+  def kcal
+    value = 0
+    ingredients.each do |ingredient|
+      value += ingredient.food.kcal * ingredient.quantity
+    end
+    value
+  end
 end

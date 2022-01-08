@@ -10,7 +10,7 @@
   <%= form_with(model: current_user.favorites.build) do |f| %>
     <%= hidden_field_tag :recipe_id, recipe.id %>
     <%= f.button :type => "submit", style: 'border-style: none; background: none;' do %>
-       <i class="fas fa-heart like-btn"></i>
+       <i class="far fa-heart like-btn"></i>
        <span>お気に入りに追加</span>
     <% end %>
   <% end %>
