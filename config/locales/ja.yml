@@ -16,6 +16,10 @@ ja:
         title: タイトル
         explanation: 説明
         img: 画像
+        ingredients: 材料
+      ingredients:
+        food: 材料
+        quantity: 分量
   date:
     abbr_day_names:
     - 日
