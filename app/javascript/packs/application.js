@@ -19,6 +19,7 @@ import 'select2/dist/css/select2.css'
 document.addEventListener('turbolinks:load', () => {
   $('.js-select').select2({
     placeholder: 'Select an option',
-    allowClear: true
+    allowClear: true,
+    width: 'auto'
   })
 })
