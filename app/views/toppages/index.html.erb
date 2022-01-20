@@ -3,9 +3,53 @@
     <p>MacroRecipeはマクロ栄養素の量がわかるレシピサイトです</p>
     <div class="row justify-content-center">
       <div class="col-md-8">
-          <%= form_with url: root_path, method: :get, local: true,  class: :"input-group" do |f| %>
-            <%= f.text_field :title, value: params[:title], class: "form-control", placeholder: "レシピ名で検索" %>
-            <%= f.submit :'検索', class: "btn btn-success" %>
+          <%= form_with url: root_path, method: :get, local: true,  class: :"" do |f| %>
+            <div class="input-group">
+              <%= f.text_field :title, value: params[:title], class: "form-control", placeholder: "レシピ名で検索" %>
+              <%= f.submit :'検索', class: "btn btn-success" %>
+            </div>
+            <p>
+              <button class="btn btn-success mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                絞り込み
+              </button>
+            </p>
+            <div class="collapse" id="collapseExample">
+              <div class="card card-body text-dark">
+                <div class="row justify-content-center mt-3">
+                  <p class="col-sm-2">タンパク質</p>
+                  <div class="col-sm-2">
+                    <%= f.number_field :p_min, value: params[:p_min], class: "form-control", placeholder: "" %>
+                  </div>
+                  <p class="col-sm-1">~</p>
+                  <div class="col-sm-2">
+                    <%= f.number_field :p_max, value: params[:p_max], class: "form-control", placeholder: "" %>
+                  </div>
+                  <p class="col-sm-1">g</p>
+                </div>
+                <div class="row justify-content-center mt-3">
+                  <p class="col-sm-2">脂質</p>
+                  <div class="col-sm-2">
+                    <%= f.number_field :f_min, value: params[:f_min], class: "form-control", placeholder: "" %>
+                  </div>
+                  <p class="col-sm-1">~</p>
+                  <div class="col-sm-2">
+                    <%= f.number_field :f_max, value: params[:f_max], class: "form-control", placeholder: "" %>
+                  </div>
+                  <p class="col-sm-1">g</p>
+                </div>
+                <div class="row justify-content-center mt-3">
+                  <p class="col-sm-2">炭水化物</p>
+                  <div class="col-sm-2">
+                    <%= f.number_field :c_min, value: params[:c_min], class: "form-control", placeholder: "" %>
+                  </div>
+                  <p class="col-sm-1">~</p>
+                  <div class="col-sm-2">
+                    <%= f.number_field :c_max, value: params[:c_max], class: "form-control", placeholder: "" %>
+                  </div>
+                  <p class="col-sm-1">g</p>
+                </div>
+              </div>
+            </div>
           <% end %>
       </div>
     </div>

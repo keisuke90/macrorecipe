@@ -2,14 +2,18 @@
   <%= render 'layouts/error_messages', model: recipe_form.object %>
   
   <div class="row mb-3">
-    <%= recipe_form.label :'title', class: "col-form-label col-sm-1" %>
+    <div class="col-sm-1">
+      <%= recipe_form.label :'title', class: "col-form-label" %>
+    </div>
     <div class="col-sm-6">
       <%= recipe_form.text_field :title, :placeholder => "レシピのタイトルを入力", class: "form-control" %>
     </div>
   </div>
   
   <div class="row mb-3">
-    <%= recipe_form.label :'explanation', class: "col-form-label col-sm-1" %>
+    <div class="col-sm-1">
+      <%= recipe_form.label :'explanation', class: "col-form-label" %>
+    </div>
     <div class="col-sm-6"><%= recipe_form.text_area :explanation, :placeholder => "レシピの説明を入力", class: "form-control" %></div>
   </div>
   
