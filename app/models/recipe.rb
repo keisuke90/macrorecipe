@@ -5,6 +5,7 @@ class Recipe < ApplicationRecord
   
   validates :title, presence: true, length: { maximum: 50 }
   validates :explanation, presence: true, length: { maximum: 255 }
+  validates :ingredients, presence: true
   
   mount_uploader :image, RacipeImageUploader
   
