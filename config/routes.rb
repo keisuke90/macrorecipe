@@ -15,6 +15,12 @@ Rails.application.routes.draw do
   
   resources :recipes
   resources :favorites, only: [:create, :destroy]
+  resources :foods, only: [] do
+    collection do
+      get :csv_import
+      post :csv_import
+    end
+ end
   
   get '*path', controller: 'application', action: 'render_404'
 end

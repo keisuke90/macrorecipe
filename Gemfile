@@ -49,6 +49,8 @@ gem 'carrierwave', '~> 1.3', '>= 1.3.1'
 gem 'cloudinary'
 gem 'chosen-rails'
 gem "jquery-rails"
+gem 'roo'
+gem 'activerecord-import'
 
 group :production do
   gem 'pg', '>= 0.18', '< 2.0'
