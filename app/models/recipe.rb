@@ -49,10 +49,10 @@ class Recipe < ApplicationRecord
   end
   
   def calc_ingredients
-    self.protein = calc_protein
-    self.fat = calc_fat
-    self.carbo = calc_carbo
-    self.kcal = calc_kcal
+    self.protein = calc_protein.round(1)
+    self.fat = calc_fat.round(1)
+    self.carbo = calc_carbo.round(1)
+    self.kcal = calc_kcal.round(1)
   end
   
 end
