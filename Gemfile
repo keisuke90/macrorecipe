@@ -51,6 +51,7 @@ gem 'chosen-rails'
 gem "jquery-rails"
 gem 'roo'
 gem 'activerecord-import'
+gem 'cocoon'
 
 group :production do
   gem 'pg', '>= 0.18', '< 2.0'

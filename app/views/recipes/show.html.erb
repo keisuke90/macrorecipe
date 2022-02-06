@@ -60,13 +60,15 @@
 <div class="row pb-3">
   <div class="col-8">
     <div class="row m-0">
+      <% n = 1 %>
       <% @steps.each do |step| %>
         <div class="card border-secondary col-4 px-0" style="max-width: 18rem;">
-          <div class="card-header"><%= "手順#{step.num}" %></div>
+          <div class="card-header"><%= "手順#{n}" %></div>
           <div class="card-body">
             <p class="card-text"><%= step.explanation %></p>
           </div>
         </div>
+        <% n += 1 %>
       <% end %>
     </div>
   </div>

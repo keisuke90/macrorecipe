@@ -7,19 +7,35 @@ import $ from "jquery"
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import "channels"
+import 'select2'
+import 'select2/dist/css/select2.css'
+import "cocoon"
 
 Rails.start()
 Turbolinks.start()
 
 require("jquery")
 
-import 'select2'
-import 'select2/dist/css/select2.css'
 
 document.addEventListener('turbolinks:load', () => {
   $('.js-select').select2({
-    placeholder: 'Select an option',
+    placeholder: '食材を選択',
     allowClear: true,
-    width: 'auto'
+    width: '1000px'
   })
 })
+
+$(function() {
+  function readURL(input) {
+      if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+  $('#img_prev').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+      }
+  }
+  $("#recipe_img").change(function(){
+      readURL(this);
+  });
+});
