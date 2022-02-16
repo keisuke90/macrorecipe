@@ -14,9 +14,7 @@ https://macrorecipe.herokuapp.com/
 # 使用技術
 * Ruby 3.0.0
 * Ruby on Rails 6.1.3
-*  MySQL 5.7
-* Nginx
-* Puma
+* MySQL 5.7
 * Docker/Docker-compose
 * Bootstrap
 * jQuery
