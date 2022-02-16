@@ -47,12 +47,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'pagy'
 gem 'carrierwave', '~> 1.3', '>= 1.3.1'
 gem 'cloudinary'
-gem 'chosen-rails'
 gem "jquery-rails"
 gem 'roo'
 gem 'activerecord-import'
 gem 'cocoon'
 
-group :production do
-  gem 'pg', '>= 0.18', '< 2.0'
-end
+# group :production do
+#   gem 'pg', '>= 0.18', '< 2.0'
+# end
