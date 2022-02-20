@@ -5,7 +5,7 @@ MacroRecipeはマクロ栄養素の量がわかるレシピサイトです。<br
 「高タンパク質・低脂質な料理を食べたいが茹でただけの鶏胸肉は飽きたッ！」というトレーニーにおすすめです。
 
 ##  URL
-https://macrorecipe.herokuapp.com/
+https://www.macrorecipe.com/
 
 テスト用アカウント<br>
 メールアドレス：macro@recipe.com<br>
