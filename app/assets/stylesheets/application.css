@@ -35,3 +35,11 @@
 .pagination {
   justify-content: center;
 }
+
+.bg-image {
+  background-image: url('toppage.jpeg');
+}
+
+.main-content {
+  margin-top: 55px;
+}

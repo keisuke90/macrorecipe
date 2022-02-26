@@ -1,5 +1,7 @@
-<%= render 'form', recipe: @recipe %>
+<div class="container pt-3">
+  <%= render 'form', recipe: @recipe %>
 
-<% if @recipe.errors.any? %>
-  <%= javascript_pack_tag 'recipes/recipes_render' %>
-<% end %>
+  <% if @recipe.errors.any? %>
+    <%= javascript_pack_tag 'recipes/recipes_render' %>
+  <% end %>
+</div>

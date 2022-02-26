@@ -16,7 +16,6 @@ Turbolinks.start()
 
 require("jquery")
 
-
 document.addEventListener('turbolinks:load', () => {
   $('.js-select').select2({
     placeholder: '食材を選択',
